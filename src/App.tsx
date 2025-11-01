@@ -41,6 +41,7 @@ function App() {
   const [showEndGameModal, setShowEndGameModal] = useState(false);
   const [winner, setWinner] = useState<'player' | 'ai' | null>(null);
   const [aiRecommendedShot, setAiRecommendedShot] = useState<{ row: number; col: number } | null>(null);
+  const [isAiTurn, setIsAiTurn] = useState(false);
 
   function toggleTestMode() {
     const newTestMode = !testMode;
@@ -202,7 +203,7 @@ function App() {
   }
 
   function handlePlayerShot(row: number, col: number) {
-    if (gamePhase !== 'playing') return;
+    if (gamePhase !== 'playing' || isAiTurn) return;
 
     const cell = aiBoard[row][col];
     if (cell.state === 'hit' || cell.state === 'miss' || cell.state === 'sunk') {
@@ -238,7 +239,11 @@ function App() {
       setAiRecommendedShot(recommendedShot);
       setMessage('Test Mode: Click the yellow square to execute AI suggestion.');
     } else {
-      setTimeout(() => executeAiTurn(newAiBoard, newAiShips), 800);
+      setIsAiTurn(true);
+      setTimeout(() => {
+        executeAiTurn(newAiBoard, newAiShips);
+        setIsAiTurn(false);
+      }, 800);
     }
   }
 
