@@ -52,7 +52,7 @@ function App() {
       const recommendedShot = ai.getNextShot();
       console.log('💡 AI RECOMMENDATION (yellow square):', recommendedShot);
       setAiRecommendedShot(recommendedShot);
-      setMessage('Test Mode: Click the yellow square to execute AI suggestion.');
+      setMessage('This is used to test the actions of the AI. The yellow square shows the AI\'s suggested next move. Click on any square to commit its next move');
     } else {
       setAiRecommendedShot(null);
     }
@@ -239,7 +239,7 @@ function App() {
     if (testMode) {
       const recommendedShot = ai.getNextShot();
       setAiRecommendedShot(recommendedShot);
-      setMessage('Test Mode: Click the yellow square to execute AI suggestion.');
+      setMessage('This is used to test the actions of the AI. The yellow square shows the AI\'s suggested next move. Click on any square to commit its next move');
     } else {
       setIsAiTurn(true);
       setTimeout(() => {
