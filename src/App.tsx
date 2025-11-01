@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Board, Ship, GamePhase, PlacementShip } from './types';
+import { Board, Ship, GamePhase, PlacementShip, Coord } from './types';
 import {
   createEmptyBoard,
   createShips,
