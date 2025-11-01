@@ -77,16 +77,23 @@ export function placeShipsRandomly(board: Board, ships: Ship[]): void {
   for (const ship of ships) {
     let placed = false;
     let attempts = 0;
-    while (!placed && attempts < 100) {
+    const maxAttempts = 1000;
+
+    while (!placed && attempts < maxAttempts) {
       const horizontal = Math.random() < 0.5;
       const row = Math.floor(Math.random() * BOARD_SIZE);
       const col = Math.floor(Math.random() * BOARD_SIZE);
 
       if (canPlaceShip(board, row, col, ship.length, horizontal)) {
         placeShip(board, row, col, ship.length, horizontal, ship.id);
+        ship.placed = true;
         placed = true;
       }
       attempts++;
+    }
+
+    if (!placed) {
+      console.error(`Failed to place ship ${ship.id} with length ${ship.length} after ${maxAttempts} attempts`);
     }
   }
 }

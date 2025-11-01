@@ -44,6 +44,7 @@ function App() {
   const [isAiTurn, setIsAiTurn] = useState(false);
 
   function toggleTestMode() {
+    if (isAiTurn) return;
     const newTestMode = !testMode;
     setTestMode(newTestMode);
 
@@ -181,6 +182,7 @@ function App() {
   }
 
   function handleReset() {
+    if (isAiTurn) return;
     setPlayerBoard(createEmptyBoard());
     setAiBoard(createEmptyBoard());
     setPlayerShips(createShips());
@@ -349,9 +351,10 @@ function App() {
           {gamePhase === 'playing' && (
             <button
               onClick={toggleTestMode}
+              disabled={isAiTurn}
               className={`absolute top-0 right-0 px-4 py-2 text-white rounded-lg font-semibold transition-colors ${
                 testMode ? 'bg-orange-600 hover:bg-orange-700' : 'bg-purple-600 hover:bg-purple-700'
-              }`}
+              } disabled:bg-gray-400 disabled:cursor-not-allowed`}
             >
               {testMode ? 'Exit Test Mode' : 'Test Mode'}
             </button>
@@ -379,7 +382,7 @@ function App() {
           )}
           <button
             onClick={handleReset}
-            disabled={gamePhase === 'setup' && !placementShips.some(s => s.placed)}
+            disabled={(gamePhase === 'setup' && !placementShips.some(s => s.placed)) || isAiTurn}
             className="px-6 py-2 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             Reset Game

@@ -820,7 +820,7 @@ export class BattleshipAI {
 
       // If we have hits, check if remaining queue targets are still good
       if (this.hits.length > 0 && this.targetQueue.length > 0) {
-        const lines = this.findAllLines(this.hits);
+        const lines = this.findAllLines();
         if (lines.length > 0) {
           // Check if any remaining target would extend a line
           const hasGoodTarget = this.targetQueue.some(target =>
