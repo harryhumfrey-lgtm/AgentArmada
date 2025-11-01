@@ -55,6 +55,7 @@ function App() {
       setMessage('This is used to test the actions of the AI. The yellow square shows the AI\'s suggested next move. Click on any square to commit its next move');
     } else {
       setAiRecommendedShot(null);
+      setMessage('Your turn! Click in Enemy Waters to fire');
     }
   }
 
@@ -175,7 +176,7 @@ function App() {
     setAiBoard(newAiBoard);
     setAiShips(newAiShips);
     setGamePhase('playing');
-    setMessage('Your turn! Click on the AI grid to fire');
+    setMessage('Your turn! Click in Enemy Waters to fire');
     setTestMode(false);
     ai.reset();
   }
