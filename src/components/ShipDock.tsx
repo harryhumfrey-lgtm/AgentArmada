@@ -13,7 +13,7 @@ export function ShipDock({ ships, onShipSelect, onShipRemove, selectedShipId, on
   return (
     <div className="bg-white rounded-lg shadow-md p-3" style={{ width: '240px', marginTop: '52px' }}>
       <p className="text-xs text-gray-600 mb-2 text-center">
-        Select ship, and drag to grid
+        Select ship, then place on grid
       </p>
       <div className="space-y-1 mb-2">
         {ships.map((ship) => {
