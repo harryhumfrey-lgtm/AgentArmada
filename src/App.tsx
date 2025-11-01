@@ -23,7 +23,7 @@ function App() {
   const [playerShips, setPlayerShips] = useState<Ship[]>(createShips());
   const [aiShips, setAiShips] = useState<Ship[]>(createShips());
   const [gamePhase, setGamePhase] = useState<GamePhase>('setup');
-  const [message, setMessage] = useState('Drag ships from the dock onto your grid');
+  const [message, setMessage] = useState('Select ship, then place on grid');
   const [ai] = useState(() => new BattleshipAI());
 
   const [placementShips, setPlacementShips] = useState<PlacementShip[]>([
@@ -77,7 +77,6 @@ function App() {
   function handleShipSelect(shipId: number) {
     setSelectedShipId(shipId);
     setIsHorizontal(true);
-    setMessage('Click the grid to place your ship');
   }
 
   function handleShipRemove(shipId: number) {
@@ -200,7 +199,7 @@ function App() {
     ]);
     setSelectedShipId(null);
     setIsHorizontal(true);
-    setMessage('Click a ship to select it, then click the grid to place');
+    setMessage('Select ship, then place on grid');
     ai.reset();
   }
 
