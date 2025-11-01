@@ -348,13 +348,12 @@ function App() {
           </div>
           {gamePhase === 'playing' && (
             <button
-              onClick={toggleTestMode}
-              disabled={isAiTurn}
+              onClick={isAiTurn ? undefined : toggleTestMode}
               className={`absolute top-0 right-0 px-4 py-2 text-white rounded-lg font-semibold transition-colors ${
                 testMode
                   ? 'bg-orange-600 hover:bg-orange-700'
                   : isAiTurn
-                    ? 'bg-gray-400 cursor-not-allowed'
+                    ? 'bg-purple-600 opacity-50 cursor-not-allowed'
                     : 'bg-purple-600 hover:bg-purple-700'
               }`}
             >
