@@ -351,8 +351,12 @@ function App() {
               onClick={toggleTestMode}
               disabled={isAiTurn}
               className={`absolute top-0 right-0 px-4 py-2 text-white rounded-lg font-semibold transition-colors ${
-                testMode ? 'bg-orange-600 hover:bg-orange-700' : 'bg-purple-600 hover:bg-purple-700'
-              } disabled:bg-gray-400 disabled:cursor-not-allowed`}
+                testMode
+                  ? 'bg-orange-600 hover:bg-orange-700'
+                  : isAiTurn
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-purple-600 hover:bg-purple-700'
+              }`}
             >
               {testMode ? 'Exit Test Mode' : 'Test Mode'}
             </button>
