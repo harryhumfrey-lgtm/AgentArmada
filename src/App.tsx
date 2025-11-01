@@ -181,7 +181,6 @@ function App() {
   }
 
   function handleReset() {
-    if (isAiTurn) return;
     setPlayerBoard(createEmptyBoard());
     setAiBoard(createEmptyBoard());
     setPlayerShips(createShips());
@@ -381,7 +380,7 @@ function App() {
           )}
           <button
             onClick={handleReset}
-            disabled={(gamePhase === 'setup' && !placementShips.some(s => s.placed)) || isAiTurn}
+            disabled={gamePhase === 'setup' && !placementShips.some(s => s.placed)}
             className="px-6 py-2 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             Reset Game
