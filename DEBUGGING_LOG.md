@@ -368,6 +368,71 @@ The game now has robust error handling, proper state management, and protection 
 
 ---
 
+## AI Development Process (Pre-Debugging)
+
+Before encountering the bugs documented above, we went through an extensive process to develop and refine the AI behavior:
+
+### Phase 1: Initial AI Implementation
+Created the `BattleshipAI` class in `src/utils/aiUtils.ts` with fundamental capabilities:
+- Random shot selection for unexplored cells
+- Basic hit tracking
+- Simple target queue for adjacent cells after a hit
+
+### Phase 2: Hunt/Target Mode Implementation
+Enhanced the AI with two distinct behavioral modes:
+- **Hunt Mode**: Strategic searching using probability-based targeting
+- **Target Mode**: Activated after hitting a ship, systematically explores adjacent cells to find ship orientation and sink it
+
+### Phase 3: Probability Density Mapping
+Implemented sophisticated probability calculations:
+- Created a heat map of the board based on remaining ship sizes
+- Each cell's probability calculated by counting how many ships could potentially occupy it
+- Weighted by ship size and configuration (horizontal vs vertical)
+- Prioritized high-probability cells during hunt mode
+
+### Phase 4: Sunk Ship Tracking
+Added intelligence to recognize when ships are destroyed:
+- `checkIfShipSunk()` method to detect complete ship eliminations
+- Cleanup of target queue when ships sink
+- Removal of dead-end targets that were part of sunken ships
+
+### Phase 5: Line Detection and Extension
+Implemented pattern recognition for multi-hit sequences:
+- `findAllLines()` to identify linear hit patterns (2+ consecutive hits)
+- Line extension logic to continue along discovered ship orientations
+- Priority system: extend known lines before exploring new adjacent cells
+
+### Phase 6: Smart Target Selection
+Refined target queue prioritization:
+- Adjacent cells to recent hits get highest priority
+- Line extensions prioritized over isolated adjacents
+- Elimination of already-shot cells from consideration
+- Consideration of board boundaries
+
+### Phase 7: Shot History and Validation
+Added comprehensive tracking and validation:
+- `firedShots` Set to prevent duplicate shots
+- Validation checks before every shot
+- Fallback to random valid shots if target queue is exhausted
+
+### Phase 8: Reset Functionality
+Implemented proper state cleanup:
+- `reset()` method to clear all AI state
+- Preparation for new games without memory contamination
+- Clean slate for probability calculations
+
+### Testing and Observation
+Throughout development, we:
+- Tested AI behavior in various game states
+- Observed strategic decision-making
+- Verified probability calculations
+- Ensured proper mode transitions
+- Validated target queue management
+
+**Result**: A sophisticated AI that uses probability theory, pattern recognition, and strategic decision-making to provide challenging gameplay.
+
+---
+
 ## Future Improvements
 
 While not bugs, these enhancements could improve the game:
