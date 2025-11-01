@@ -337,7 +337,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Mobile Warning Banner */}
-        <div className="lg:hidden bg-amber-100 border-l-4 border-amber-500 text-amber-800 p-4 mb-6 rounded">
+        <div className="md:hidden bg-amber-100 border-l-4 border-amber-500 text-amber-800 p-4 mb-6 rounded">
           <p className="font-medium">Not optimized for mobile</p>
           <p className="text-sm">For the best experience, please view this game on a desktop or tablet device.</p>
         </div>
